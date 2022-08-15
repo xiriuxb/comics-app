@@ -1,0 +1,43 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    margin: 0 30px;
+}
+
+.image-container img {
+    max-width: calc(100vw - 40px);
+}
+
+.page-navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.prev {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.next {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+.issue-navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+.franquicia-nav{
+    background-color: azure;
+    padding: 6px 5px;
+}
+.franquicia-nav a{
+    padding: 6px 0;
+}
