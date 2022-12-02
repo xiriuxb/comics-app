@@ -21,4 +21,4 @@ Route::get('/comics/{superheroe}/{serie}', [\App\Http\Controllers\ComicControlle
 
 Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controllers\ComicController::class,'showComicPage']);
 
-Route::get('/login', [\App\Http\Controllers\Login::class,'index']);
+Route::get('/login', [\App\Http\Controllers\Login::class,'index'])->name('login');

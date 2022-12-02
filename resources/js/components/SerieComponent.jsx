@@ -10,7 +10,7 @@ const serie = ({ issues, franquicia }) => {
                     {
                         issues.map(
                             (issue) => {
-                                return <InertiaLink key={issue.number} href={'/' + issue.path + '/0'}>{issue.number}</InertiaLink>
+                                return <InertiaLink key={issue.number} href={'/' + issue.path + '/0?token='+localStorage.getItem('accessToken')}>{issue.number}</InertiaLink>
                             }
                         )
                     }

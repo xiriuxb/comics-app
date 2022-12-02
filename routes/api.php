@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controllers\ComicController::class,'getComicPage']);
+
+Route::post('/login', [\App\Http\Controllers\Login::class,'login']);
+
+Route::post('/logout', [\App\Http\Controllers\Login::class,'logout']);

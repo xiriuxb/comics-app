@@ -7,9 +7,18 @@ use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\File;
 use PhpParser\Node\Stmt\Return_;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ComicController extends Controller
 {
+
+    public function __construct() {
+        // $this->middleware('auth')->only('showComicPage');
+    }
+
     public function index(Request $request, $superheroe)
     {
         $listado = json_decode(file_get_contents(storage_path() . "/app/series.json"), true);
@@ -76,7 +85,17 @@ class ComicController extends Controller
             $props['prev_url'] = $url . $page - 1;
             $props['next_url'] = $url . $page + 1;
         }
-        return Inertia::render('PageComponent', $props);
+        try{
+            JWTAuth::parseToken()->user();
+            return Inertia::render('PageComponent', $props);
+        } catch(TokenExpiredException $e) {
+            return redirect('login');
+        } catch (TokenInvalidException $e) {
+            return redirect('login');
+        } catch (JWTException $e) {
+            return redirect('login');
+        }
+        
     }
 
     public function getComicPage(Request $request, $superheroe, $serie, $issue, $page = 0)

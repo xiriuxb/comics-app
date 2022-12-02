@@ -6,6 +6,7 @@ body{
 .listado-comics{
     display: inline-flex;
     flex-direction: column;
+    padding: 30px 15px 15px 15px;
 }
 .listado-comics a{
     padding: 15px;

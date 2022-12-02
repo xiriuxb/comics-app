@@ -8,11 +8,11 @@ import { Inertia } from '@inertiajs/inertia'
 const Page = ({ error, url, prev_url, next_url, currentPage, currentIssue, franquicia, serie, prev_issue, next_issue }) => {
 
     const visitInertiaPrev=()=>{
-        Inertia.get(prev_url);
+        Inertia.get(prev_url + `?token=${localStorage.getItem('accessToken')}`);
     }
 
     const visitInertiaNext=()=>{
-        Inertia.get(next_url);
+        Inertia.get(next_url + `?token=${localStorage.getItem('accessToken')}`);
     }
 
     const handleKeyUp= (e) =>{
@@ -47,7 +47,7 @@ const Page = ({ error, url, prev_url, next_url, currentPage, currentIssue, franq
                 </div>
                 <div className="image-container">
                     <div onClick={visitInertiaPrev} className="prev"></div>
-                    <img src={'/api' + url} alt="" />
+                    <img src={'/api' + url + `?token=${localStorage.getItem('accessToken')}`} alt="" />
                     <div onClick={visitInertiaNext} className="next"></div>
                 </div>
                 <div className="issue-navigation">
