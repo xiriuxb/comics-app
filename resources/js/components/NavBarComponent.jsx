@@ -29,6 +29,11 @@ export default function NavBar() {
                         </InertiaLink>
                     </li>
                     <li>
+                        <InertiaLink href="/login">
+                            Login
+                        </InertiaLink>
+                    </li>
+                    <li>
                         <button onClick={logout}>
                             LogOut
                         </button>

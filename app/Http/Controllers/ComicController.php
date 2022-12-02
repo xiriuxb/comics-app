@@ -57,9 +57,11 @@ class ComicController extends Controller
         if (intval($issue) < $seriejson['inicia']) {
             $url = $url . $seriejson['inicia'] . '/';
             return redirect($url);
+        } elseif (sizeof($issues)==1){
+
         } elseif (intval($issue)==$seriejson['inicia']){
             $props['next_issue']=$url.($issue + 1);
-        } elseif (intval($issue)==sizeof($issues)){
+        } elseif (intval($issue)==sizeof($issues) ){
             $props['prev_issue']=$url.($issue - 1);
         } else {
             $props['next_issue']=$url.($issue + 1);
@@ -86,7 +88,7 @@ class ComicController extends Controller
             $props['next_url'] = $url . $page + 1;
         }
         try{
-            JWTAuth::parseToken()->user();
+            $xd = JWTAuth::parseToken();
             return Inertia::render('PageComponent', $props);
         } catch(TokenExpiredException $e) {
             return redirect('login');
@@ -108,8 +110,17 @@ class ComicController extends Controller
         }
 
         $file = File::get(storage_path('app/') . $pageIm);
+        try{
+            JWTAuth::parseToken();
+            return response($file)->header('Content-Type', 'image');
+        } catch(TokenExpiredException $e) {
+            return redirect('login');
+        } catch (TokenInvalidException $e) {
+            return redirect('login');
+        } catch (JWTException $e) {
+            return redirect('login');
+        }
 
-        return response($file)->header('Content-Type', 'image');
     }
 
     private function getFranquicia($franquicia_path)

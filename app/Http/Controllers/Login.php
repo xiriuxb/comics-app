@@ -35,7 +35,7 @@ class Login extends Controller
 
     }
 
-    public function logout(){
+    public function logout(Request $request){
         try{
             JWTAuth::parseToken()->invalidate();
         } catch(TokenExpiredException $e) {

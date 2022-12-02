@@ -51,9 +51,9 @@ const Page = ({ error, url, prev_url, next_url, currentPage, currentIssue, franq
                     <div onClick={visitInertiaNext} className="next"></div>
                 </div>
                 <div className="issue-navigation">
-                    {prev_issue !='#' && <InertiaLink href={prev_issue}>Comic Previo</InertiaLink>}
+                    {prev_issue !='#' && <InertiaLink href={prev_issue+ `?token=${localStorage.getItem('accessToken')}`}>Comic Previo</InertiaLink>}
                     <div>(Comic: {currentIssue}) Pg: {_.toNumber(currentPage) + 1} </div>
-                    {next_issue !='#' && <InertiaLink href={next_issue}>Comic Siguiente</InertiaLink>}
+                    {next_issue !='#' && <InertiaLink href={next_issue+ `?token=${localStorage.getItem('accessToken')}`}>Comic Siguiente</InertiaLink>}
                 </div>
             </div>
     )
