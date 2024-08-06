@@ -16,7 +16,7 @@ class Login extends Controller
 {
     public function index()
     {
-        return Inertia::render('LoginView');
+        return Inertia::render('views/LoginView');
     }
 
     public function login(Request $req){
