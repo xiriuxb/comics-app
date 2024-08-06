@@ -1,15 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body{
     background-color: antiquewhite;
     margin: 0;
-    padding: 30px 0;
-}
-.listado-comics{
-    display: inline-flex;
-    flex-direction: column;
-    padding: 30px 15px 15px 15px;
-}
-.listado-comics a{
-    padding: 15px;
-    border: 1px solid;
-    margin: 2px;
 }
