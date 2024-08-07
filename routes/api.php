@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditorialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controller
 Route::post('/login', [\App\Http\Controllers\Login::class,'login']);
 
 Route::post('/logout', [\App\Http\Controllers\Login::class,'logout']);
+
+Route::get('/editorials',[EditorialController::class, 'getAllEditorials']);
