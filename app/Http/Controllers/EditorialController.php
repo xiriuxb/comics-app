@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class EditorialController extends Controller
 {
     public function __construct()
-    {
-    }
+    {}
+    
     public function getAllEditorials(Request $request)
     {
         $editorials = Editorial::all(['id', 'code', 'name', 'description']);

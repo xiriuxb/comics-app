@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\EditorialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controllers\ComicController::class,'getComicPage']);
+Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controllers\ComicController::class, 'getComicPage']);
 
-Route::post('/login', [\App\Http\Controllers\Login::class,'login']);
+Route::post('/login', [\App\Http\Controllers\Login::class, 'login']);
 
-Route::post('/logout', [\App\Http\Controllers\Login::class,'logout']);
+Route::post('/logout', [\App\Http\Controllers\Login::class, 'logout']);
 
-Route::get('/editorials',[EditorialController::class, 'getAllEditorials']);
+Route::get('/editorials', [EditorialController::class, 'getAllEditorials']);
+
+Route::post('/characters', [CharacterController::class, 'store']);
+Route::get('/characters', [CharacterController::class, 'getAllCharacters']);
