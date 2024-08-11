@@ -101,10 +101,10 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('character_id');
             $table->unsignedBigInteger('issue_id');
-            $table->enum('status', [CharacterIssueType::Appearance->value, CharacterIssueType::Guest->value, CharacterIssueType::Main->value, CharacterIssueType::Secondary->value])->default(CharacterIssueType::Main->value);
+            $table->enum('type', [CharacterIssueType::Appearance->value, CharacterIssueType::Guest->value, CharacterIssueType::Main->value, CharacterIssueType::Secondary->value])->default(CharacterIssueType::Main->value);
             $table->timestamps();
 
-            $table->foreign('character_id')->references('id')->on('character');
+            $table->foreign('character_id')->references('id')->on('characters');
             $table->foreign('issue_id')->references('id')->on('issues');
         });
     }
