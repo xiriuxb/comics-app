@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CharacterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +15,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\Home::class,'index']);
+Route::get('/', [\App\Http\Controllers\Home::class, 'index']);
 
-Route::get('/comics/{superheroe}', [\App\Http\Controllers\ComicController::class,'index']);
+Route::get('/comics/{superheroe}', [\App\Http\Controllers\ComicController::class, 'index']);
 
-Route::get('/comics/{superheroe}/{serie}', [\App\Http\Controllers\ComicController::class,'indexSerie']);
+Route::get('/comics/{superheroe}/{serie}', [\App\Http\Controllers\ComicController::class, 'indexSerie']);
 
-Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controllers\ComicController::class,'showComicPage']);
+Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controllers\ComicController::class, 'showComicPage']);
 
-Route::get('/login', [\App\Http\Controllers\Login::class,'index'])->name('login');
+Route::get('/login', [\App\Http\Controllers\Login::class, 'index'])->name('login');
+
+Route::prefix('admin')->group(function () {
+    Route::controller(CharacterController::class)->group(function () {
+        Route::get('/character', 'index');
+        Route::get('/character/create', 'create');
+        Route::get('/character/list', 'list');
+    });
+});
