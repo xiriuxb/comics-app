@@ -1,6 +1,6 @@
 const MyInputText = ({label, name, value, onChange, maxLength, required, error, disabled=false}) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <label className="flex flex-col" htmlFor={name}>
         {label}
         <input

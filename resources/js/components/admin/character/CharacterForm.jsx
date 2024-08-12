@@ -1,7 +1,6 @@
 import { useState } from "react";
 import HomeLayout from "../../../layouts/HomeLayout";
 import AdminLayout from "../../../layouts/AdminLayout";
-import AdminCharacterView from "../../views/admin/CharacterView";
 import MyInputText from "../../input_elements/MyInputText";
 import MyInputButton from "../../input_elements/MyInputButton";
 import FormMessageComponent from "../../shared/FormMessageComponent";
@@ -66,9 +65,12 @@ const CharacterFormComponent = ({
 
 CharacterFormComponent.layout = (page) => (
   <HomeLayout>
-    <AdminLayout>
-      <AdminCharacterView children={page} options={page.props.options} />
-    </AdminLayout>
+    <AdminLayout
+      children={page}
+      options={page.props.options}
+      title={page.props.title}
+      page_uri={"character"}
+    />
   </HomeLayout>
 );
 export default CharacterFormComponent;

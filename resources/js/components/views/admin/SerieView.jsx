@@ -1,15 +1,15 @@
 import AdminLayout from "../../../layouts/AdminLayout";
 import HomeLayout from "../../../layouts/HomeLayout";
 
-const AdminCharacterView = ({ options }) => {
+const AdminSerieView = ({ children, options }) => {
   return (
     <></>
   );
 };
 
-AdminCharacterView.layout = (page) => (
+AdminSerieView.layout = (page) => (
   <HomeLayout>
     <AdminLayout children={page} options={page.props.options} title={page.props.title}/>
   </HomeLayout>
 );
-export default AdminCharacterView;
+export default AdminSerieView;

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "../../../layouts/AdminLayout";
 import HomeLayout from "../../../layouts/HomeLayout";
-import AdminCharacterView from "../../views/admin/CharacterView";
 import axios from "axios";
 
 const CharacterListComponent = ({ options }) => {
@@ -33,9 +32,11 @@ const CharacterListComponent = ({ options }) => {
 
 CharacterListComponent.layout = (page) => (
   <HomeLayout>
-    <AdminLayout>
-      <AdminCharacterView children={page} options={page.props.options} />
-    </AdminLayout>
+    <AdminLayout
+      children={page}
+      options={page.props.options}
+      title={page.props.title}
+    />
   </HomeLayout>
 );
 

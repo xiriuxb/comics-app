@@ -1,5 +1,7 @@
 import { InertiaLink } from "@inertiajs/inertia-react";
 
+const ADMIN_BASE_ROUTE = '/admin'
+
 export default function AdminBarComponent() {
   return (
     <nav className="w-36 bg-tomato rounded-lg">
@@ -23,10 +25,14 @@ export default function AdminBarComponent() {
 const adminNavLinks = [
   {
     title: "character",
-    path: "/admin/character",
+    path: `${ADMIN_BASE_ROUTE}/character`
   },
   {
-    title:'issue',
-    path:'/admin/issue'
-  }
+    title: "serie",
+   path: `${ADMIN_BASE_ROUTE}/serie`
+  },
+  {
+    title: "issue",
+    path: `${ADMIN_BASE_ROUTE}/issue`
+  },
 ];
