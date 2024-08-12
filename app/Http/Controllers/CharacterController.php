@@ -15,17 +15,17 @@ class CharacterController extends Controller
 
     public function index()
     {
-        return Inertia::render('views/admin/CharacterView', ['options' => ['create', 'list']]);
+        return Inertia::render('views/admin/CharacterView', ['options' => ['create', 'list'], 'title' => 'Admin Character']);
     }
 
     public function create()
     {
-        return Inertia::render('admin/character/CharacterForm', ['options' => ['create', 'list']]);
+        return Inertia::render('admin/character/CharacterForm', ['options' => ['create', 'list'], 'title' => 'Admin Character']);
     }
 
     public function list()
     {
-        return Inertia::render('admin/character/CharacterList', ['options' => ['create', 'list']]);
+        return Inertia::render('admin/character/CharacterList', ['options' => ['create', 'list'], 'title' => 'Admin Character']);
     }
 
     public function getAllCharacters(Request $request)

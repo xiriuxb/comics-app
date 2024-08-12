@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\SerieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,5 @@ Route::get('/editorials', [EditorialController::class, 'getAllEditorials']);
 
 Route::post('/characters', [CharacterController::class, 'store']);
 Route::get('/characters', [CharacterController::class, 'getAllCharacters']);
+
+Route::post('/series', [SerieController::class,'store']);

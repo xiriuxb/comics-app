@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 class EditorialController extends Controller
 {
     public function __construct()
-    {}
-    
+    {
+    }
+
     public function getAllEditorials(Request $request)
     {
-        $editorials = Editorial::all(['id', 'code', 'name', 'description']);
-        return response()->json($editorials);
+        try {
+            $editorials = Editorial::all(['id', 'code', 'name']);
+            return response()->json($editorials);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

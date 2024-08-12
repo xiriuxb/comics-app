@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\SerieController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -30,5 +31,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/character', 'index');
         Route::get('/character/create', 'create');
         Route::get('/character/list', 'list');
+    });
+
+    Route::controller(SerieController::class)->group(function () {
+        Route::get('/serie', 'index');
+        Route::get('/serie/create', 'create');
     });
 });

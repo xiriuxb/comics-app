@@ -46,8 +46,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('editorial_id');
             $table->string('code', 64)->nullable(false);
             $table->string('name', 128)->unique()->nullable(false);
-            $table->date('start_date')->nullable(false);
-            $table->date('end_date')->nullable(false);
+            $table->date('start_date')->nullable(true);
+            $table->date('end_date')->nullable(true);
             $table->enum('status', [SerieStatusTypes::Canceled->value, SerieStatusTypes::Finished->value, SerieStatusTypes::Open->value])->default(SerieStatusTypes::Open->value)->nullable(false);
             $table->string('description')->nullable();
             $table->timestamps();
