@@ -9,5 +9,10 @@ class Issue extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['number', 'title', 'description', 'release_date', 'page_count', 'cover_img_url', 'isbn', 'lang'];
+    protected $fillable = ['title', 'description', 'release_date', 'page_count', 'cover_img_url', 'isbn', 'lang'];
+
+    public function serie()
+    {
+        return $this->belongsTo(SerieIssue::class);
+    }
 }

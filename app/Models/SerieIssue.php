@@ -9,5 +9,7 @@ class SerieIssue extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['serie_id', 'issue_id', 'type'];
+    protected $table = 'serie_issue';
+
+    protected $fillable = ['serie_id', 'issue_id', 'type', 'number'];
 }

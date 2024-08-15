@@ -44,6 +44,7 @@ return new class extends Migration {
         Schema::create('series', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('editorial_id');
+            $table->unsignedBigInteger('character_id');
             $table->string('code', 64)->nullable(false);
             $table->string('name', 128)->unique()->nullable(false);
             $table->date('start_date')->nullable(true);
@@ -53,23 +54,24 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->foreign('editorial_id')->references('id')->on('editorials');
+            $table->foreign('character_id')->references('id')->on('characters');
         });
 
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-            $table->unsignedDecimal('number', 5, 1);
             $table->string('title', 128)->nullable(true);
             $table->date('release_date')->nullable(true);
             $table->string('description', 1024)->nullable(true);
             $table->unsignedInteger('page_count')->nullable(true);
             $table->string('cover_image_url', 1024)->nullable(true);
             $table->string('isbn', 13)->nullable();
-            $table->string('lang', 24);
+            $table->string('lang', 24)->nullable();
             $table->timestamps();
         });
 
         Schema::create('serie_issue', function (Blueprint $table) {
             $table->id();
+            $table->unsignedDecimal('number', 5, 1);
             $table->unsignedBigInteger('serie_id')->nullable(false);
             $table->unsignedBigInteger('issue_id')->nullable(false);
             $table->enum('type', [SerieIssueTypes::Main->value, SerieIssueTypes::Other->value, SerieIssueTypes::TieIn->value])->default(SerieIssueTypes::Main->value)->nullable(false);

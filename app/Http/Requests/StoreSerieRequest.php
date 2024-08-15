@@ -30,7 +30,8 @@ class StoreSerieRequest extends FormRequest
             'editorial_id' => 'required|numeric|exists:editorials,id',
             'status' => ['required', Rule::enum(SerieStatusTypes::class)],
             'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date'
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'character_id' => 'required|numeric|exists:characters,id'
         ];
     }
 }
