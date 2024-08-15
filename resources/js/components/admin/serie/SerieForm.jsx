@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import { debounce } from "lodash";
 import AdminLayout from "../../../layouts/AdminLayout";
 import HomeLayout from "../../../layouts/HomeLayout";
 import FormMessageComponent from "../../shared/FormMessageComponent";
 import MyInputText from "../../input_elements/MyInputText";
 import MyInputButton from "../../input_elements/MyInputButton";
 import MyInputDate from "../../input_elements/MyInputDate";
-import axios from "axios";
 import MySelect from "../../input_elements/MySelect";
+import MyComboBox from "../../input_elements/MyComboBox";
+import MyComboBoxSearch from "../../input_elements/MyComboBoxSearch";
 
 const serieFormInitialValues = {
   editorial_id: "",
+  character_id: "",
+  serie_id: "",
   code: "",
   name: "",
   start_date: null,
@@ -37,20 +42,12 @@ const AdminSerieForm = ({
     });
   };
 
-  const handleEditorialSelect = (e) => {
-    setFormValues({ ...formValues, editorial_id: e.target.value });
+  const handleChangeVals = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
-  const handleStatusSelect = (e) => {
-    setFormValues({ ...formValues, status: e.target.value });
-  };
-
-  const handleStartDate = (e) => {
-    setFormValues({ ...formValues, start_date: e.target.value });
-  };
-
-  const handleEndDate = (e) => {
-    setFormValues({ ...formValues, end_date: e.target.value });
+  const handleCharcterId = (characterId) => {
+    setFormValues({ ...formValues, character_id: characterId });
   };
 
   const handleSubmit = async (e) => {
@@ -59,9 +56,12 @@ const AdminSerieForm = ({
     setLoading(true);
     setSuccessMsg("");
     try {
-      await axios.post("/api/series", formValues);
-      setSuccessMsg("Character created successfully");
-      setFormValues(formInitialValues);
+      const response = await axios.post("/api/series", formValues);
+      setSuccessMsg("Serie created successfully");
+      setFormValues({
+        ...formInitialValues,
+        character_id: response.data.character_id,
+      });
     } catch (error) {
       setServerErrors(error.response.data.errors);
     } finally {
@@ -72,11 +72,18 @@ const AdminSerieForm = ({
     <form className="flex flex-col gap-y-2 max-w-lg" onSubmit={handleSubmit}>
       <h3 className="font-bold">Create</h3>
       <FormMessageComponent message={successMsg} />
+      <MyComboBoxSearch
+        label={"Character Serie:"}
+        name={"character-select"}
+        setId={handleCharcterId}
+        error={serverErrors.character_id}
+        apiRoute={"/api/characters"}
+      />
       <div className="flex flex-col gap-1 w-full md:flex-row">
         <MySelect
-          name="serie_editorial"
+          name="editorial_id"
           value={formValues.editorial_id}
-          onChange={handleEditorialSelect}
+          onChange={handleChangeVals}
           error={serverErrors.editorial_id}
           title="Select Editorial"
           options={editorials}
@@ -84,9 +91,9 @@ const AdminSerieForm = ({
           nameKey={"name"}
         />
         <MySelect
-          name="serie_status"
+          name="status"
           value={formValues.status}
-          onChange={handleStatusSelect}
+          onChange={handleChangeVals}
           error={serverErrors.status}
           title="Select Status"
           options={statuses}
@@ -94,8 +101,8 @@ const AdminSerieForm = ({
       </div>
       <div className="flex flex-col gap-1 w-full md:flex-row">
         <MyInputText
-          name={"serie_name"}
-          label={"Name:"}
+          name={"name"}
+          label={"Serie Name:"}
           error={serverErrors.name}
           maxLength={32}
           required={true}
@@ -104,7 +111,7 @@ const AdminSerieForm = ({
         />
         <MyInputText
           label={"Code:"}
-          name={"serie_code"}
+          name={"code"}
           error={serverErrors.code}
           maxLength={32}
           required={true}
@@ -114,19 +121,19 @@ const AdminSerieForm = ({
       </div>
       <div className="flex flex-col gap-1 w-full md:flex-row">
         <MyInputDate
-          name={"serie_start"}
+          name={"start_date"}
           value={formValues.start_date}
           label="Start Date:"
           error={serverErrors.start_date}
-          onChange={handleStartDate}
+          onChange={handleChangeVals}
           max={formValues.end_date ? formValues.end_date : undefined}
         />
         <MyInputDate
-          name={"serie_end"}
+          name={"end_date"}
           value={formValues.end_date}
           label="End Date:"
           error={serverErrors.end_date}
-          onChange={handleEndDate}
+          onChange={handleChangeVals}
           min={formValues.start_date ? formValues.start_date : undefined}
         />
       </div>

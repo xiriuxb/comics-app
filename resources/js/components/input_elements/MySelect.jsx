@@ -12,7 +12,6 @@ const MySelect = ({
   if (typeof options != "object") {
     return <></>;
   }
-  console.log(options)
 
   return (
     <div className="w-full">

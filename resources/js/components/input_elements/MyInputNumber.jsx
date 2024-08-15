@@ -1,18 +1,20 @@
-const MyInputText = ({label, name, value, onChange, maxLength, required=false, error, disabled=false}) => {
+const MyInputNumber = ({label, name, value, onChange, required, error, disabled=false}) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-16">
       <label className="flex flex-col" htmlFor={name}>
         {label}
         <input
           className="p-1 border border-black rounded-md"
-          type="text"
+          type="number"
           name={name}
           id={name}
           value={value}
           required={required}
-          maxLength={maxLength}
+          max={"999"}
+          maxLength={"4"}
           onChange={onChange}
           disabled={disabled}
+          step={1}
         />
       </label>
       {error && (
@@ -24,4 +26,4 @@ const MyInputText = ({label, name, value, onChange, maxLength, required=false, e
   );
 };
 
-export default MyInputText;
+export default MyInputNumber;

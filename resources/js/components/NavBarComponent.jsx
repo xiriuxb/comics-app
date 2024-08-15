@@ -28,7 +28,7 @@ export default function NavBar() {
             </InertiaLink>
           </li>
           <li>
-            <InertiaLink className="hover:bg-slate-600/30 p-2" href="/admin">
+            <InertiaLink className="hover:bg-slate-600/30 p-2" href="/admin/character">
               Admin
             </InertiaLink>
           </li>
