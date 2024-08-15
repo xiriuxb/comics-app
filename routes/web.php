@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\SerieController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,14 +28,27 @@ Route::get('/comics/{superheroe}/{serie}/{issue}/{page?}', [\App\Http\Controller
 Route::get('/login', [\App\Http\Controllers\Login::class, 'index'])->name('login');
 
 Route::prefix('admin')->group(function () {
-    Route::controller(CharacterController::class)->group(function () {
-        Route::get('/character', 'index');
-        Route::get('/character/create', 'create');
-        Route::get('/character/list', 'list');
+
+    Route::prefix('character')->group(function () {
+        Route::controller(CharacterController::class)->group(function () {
+            Route::get('/', 'indexView');
+            Route::get('/create', 'createView');
+            Route::get('/list', 'listView');
+        });
     });
 
-    Route::controller(SerieController::class)->group(function () {
-        Route::get('/serie', 'index');
-        Route::get('/serie/create', 'create');
+    Route::prefix('serie')->group(function () {
+        Route::controller(SerieController::class)->group(function () {
+            Route::get('/', 'indexView');
+            Route::get('/create', 'createView');
+            Route::get('/list', 'listView');
+        });
+    });
+
+    Route::prefix('issue')->group(function () {
+        Route::controller(IssueController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/create', 'createView');
+        });
     });
 });

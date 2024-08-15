@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\SerieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,11 @@ Route::get('/editorials', [EditorialController::class, 'getAllEditorials']);
 Route::post('/characters', [CharacterController::class, 'store']);
 Route::get('/characters', [CharacterController::class, 'getAllCharacters']);
 
-Route::post('/series', [SerieController::class,'store']);
+Route::post('/series', [SerieController::class, 'store']);
+Route::get('/series', [SerieController::class, 'getSeries']);
+Route::get('/series/{serie_id}', [SerieController::class, 'showSerie']);
+
+Route::prefix('/issues')->group(function () {
+    Route::post('/', [IssueController::class, 'store']);
+    Route::get('/',[IssueController::class,'getIssue']);
+});
