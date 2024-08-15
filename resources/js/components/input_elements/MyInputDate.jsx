@@ -12,7 +12,7 @@ const MyInputDate = ({
       <label className="capitalize flex flex-col">
         {label}
         <input
-          className="rounded-md p-1"
+          className="p-1 border-b-2 border-orange-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-600 bg-white/50 disabled:bg-white/20"
           type="date"
           id={name}
           name={name}

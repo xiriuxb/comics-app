@@ -4,7 +4,7 @@ const MyInputNumber = ({label, name, value, onChange, required, error, disabled=
       <label className="flex flex-col" htmlFor={name}>
         {label}
         <input
-          className="p-1 border border-black rounded-md"
+          className="p-1 border-b-2 border-orange-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-600 bg-white/50 disabled:bg-white/20"
           type="number"
           name={name}
           id={name}

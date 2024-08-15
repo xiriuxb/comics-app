@@ -37,7 +37,7 @@ const CharacterFormComponent = ({
   };
 
   return (
-    <form className="flex flex-col gap-y-2 max-w-64" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-y-2 max-w-64 px-1" onSubmit={handleSubmit}>
       <h3 className="font-bold">Create</h3>
       <FormMessageComponent message={successMsg} />
       <MyInputText

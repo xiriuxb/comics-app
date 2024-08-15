@@ -69,7 +69,7 @@ const AdminSerieForm = ({
     }
   };
   return (
-    <form className="flex flex-col gap-y-2 max-w-lg" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-y-2 max-w-lg px-1" onSubmit={handleSubmit}>
       <h3 className="font-bold">Create</h3>
       <FormMessageComponent message={successMsg} />
       <MyComboBoxSearch

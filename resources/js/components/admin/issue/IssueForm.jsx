@@ -76,7 +76,7 @@ const AdminIssueForm = ({ options, title, editorials, issue_types }) => {
   };
 
   return (
-    <form className="flex flex-col gap-y-2 max-w-lg" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-y-2 max-w-lg px-1" onSubmit={handleSubmit}>
       <h3 className="font-bold">Create</h3>
       <FormMessageComponent message={successMsg} />
       <div className="flex flex-col gap-1 w-full md:flex-row">

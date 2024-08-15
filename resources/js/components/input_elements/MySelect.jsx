@@ -16,7 +16,7 @@ const MySelect = ({
   return (
     <div className="w-full">
       <select
-        className="w-full p-1 rounded-md border border-black"
+        className="w-full p-1 border-b-2 border-orange-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-600 bg-white/50 disabled:bg-white/30 disabled:cursor-not-allowed"
         name={name}
         id={name}
         value={value}

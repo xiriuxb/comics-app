@@ -22,7 +22,7 @@ const MyComboBox = ({
     <div className="flex flex-col">
       <label htmlFor={name}>{label}</label>
       <input
-        className="p-1 rounded-md border border-black"
+        className="p-1 border-b-2 border-orange-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-600 bg-white/50 disabled:bg-white/20"
         type="text"
         id={name}
         name={name}

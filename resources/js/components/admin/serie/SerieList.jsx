@@ -27,7 +27,7 @@ const SerieListComponent = ({ options, title, editorials }) => {
   };
 
   return (
-    <div>
+    <div className="px-1">
       <h3>List</h3>
       <MySelect
         options={editorials}
