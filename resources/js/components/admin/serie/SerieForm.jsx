@@ -33,6 +33,7 @@ const AdminSerieForm = ({
   const [serverErrors, setServerErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
+  const [responseSerie, setResponseSerie] = useState(null);
 
   const handleChangeName = (e) => {
     setFormValues({
@@ -57,11 +58,12 @@ const AdminSerieForm = ({
     setSuccessMsg("");
     try {
       const response = await axios.post("/api/series", formValues);
-      setSuccessMsg("Serie created successfully");
+      setSuccessMsg("Serie created successfully. Add an Issue?");
       setFormValues({
         ...formInitialValues,
         character_id: response.data.character_id,
       });
+      setResponseSerie(response.data);
     } catch (error) {
       setServerErrors(error.response.data.errors);
     } finally {
@@ -71,7 +73,7 @@ const AdminSerieForm = ({
   return (
     <form className="flex flex-col gap-y-2 max-w-lg px-1" onSubmit={handleSubmit}>
       <h3 className="font-bold">Create</h3>
-      <FormMessageComponent message={successMsg} />
+      <FormMessageComponent message={successMsg} link={{link:responseSerie&&`/admin/issue/create?serie_id=${responseSerie.id}`}} />
       <MyComboBoxSearch
         label={"Character Serie:"}
         name={"character-select"}

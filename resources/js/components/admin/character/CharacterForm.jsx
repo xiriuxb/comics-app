@@ -13,6 +13,7 @@ const CharacterFormComponent = ({
   const [serverErrors, setServerErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
+  const [characterId, setCharacterId] = useState(null);
 
   const handleChangeName = (e) => {
     setFormValues({
@@ -27,7 +28,8 @@ const CharacterFormComponent = ({
     setLoading(true);
     setSuccessMsg("");
     try {
-      await axios.post("/api/characters", formValues);
+      const response = await axios.post("/api/characters", formValues);
+      setCharacterId(response.data.id);
       setSuccessMsg("Character created successfully");
     } catch (error) {
       setServerErrors(error.response.data.errors);
@@ -37,9 +39,15 @@ const CharacterFormComponent = ({
   };
 
   return (
-    <form className="flex flex-col gap-y-2 max-w-64 px-1" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col gap-y-2 max-w-64 px-1"
+      onSubmit={handleSubmit}
+    >
       <h3 className="font-bold">Create</h3>
-      <FormMessageComponent message={successMsg} />
+      <FormMessageComponent
+        message={successMsg}
+        link={{ link: characterId&&"/admin/serie/create" }}
+      />
       <MyInputText
         name={"character_name"}
         label={"Name:"}

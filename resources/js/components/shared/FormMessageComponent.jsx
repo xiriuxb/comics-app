@@ -1,3 +1,4 @@
+import { InertiaLink } from "@inertiajs/inertia-react";
 import { useEffect, useState } from "react";
 
 const spanStyle = (type) => {
@@ -10,7 +11,7 @@ const spanStyle = (type) => {
   }
 };
 
-const FormMessageComponent = ({ message, type = "SUCCESS" }) => {
+const FormMessageComponent = ({ message, type = "SUCCESS", link={link:"", linkMsg:"Click Here"} }) => {
   const [style,  setStyle] = useState(spanStyle(type));
   useEffect(() => {
     setStyle(spanStyle(type));
@@ -20,7 +21,7 @@ const FormMessageComponent = ({ message, type = "SUCCESS" }) => {
       className={`${
         message ? "my-1 px-2 py-1" : "h-0 p-0 m-0 border-0"
       } rounded-sm text-sm w-full border transition-all ${style}`}
-    >{message}</span>
+    >{message}{link.link && <InertiaLink className="underline" href={link.link}>Click Here</InertiaLink>}</span>
   );
 };
 

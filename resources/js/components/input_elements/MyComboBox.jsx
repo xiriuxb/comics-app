@@ -28,12 +28,14 @@ const MyComboBox = ({
         name={name}
         list={`${name}-option`}
         onChange={handleChange}
-        autoComplete="false"
+        autoComplete="off"
+        role="combobox"
+        placeholder="Search..."
         disabled={disabled}
       ></input>
-      <datalist id={`${name}-option`}>
+      <datalist id={`${name}-option`} role="listbox">
         {options.map((opt) => {
-          return <option key={opt[valKey]} value={opt[nameKey]}>{opt[nameKey]}</option>;
+          return <option style={{color:"red"}} key={opt[valKey]} value={opt[nameKey]}>{opt[nameKey]}</option>;
         })}
       </datalist>
       {error && (
